@@ -32,4 +32,5 @@ git push -f https://github.com/vanmanh49/ai-steps.git gh-pages
 
 Add the lesson to both `src/content/en.js` and `src/content/vi.js` with the same
 id, question count and answer positions, and add an illustration under the same
-id in `src/LessonArt.jsx`. `npm test` fails if the two languages drift apart.
+id in `src/LessonArt.jsx`. Add the id to the expected list in
+`src/content/content.test.js`; `npm test` fails if the two languages drift apart.

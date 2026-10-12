@@ -1,0 +1,379 @@
+:root {
+  color-scheme: light dark;
+  --bg: #f6f3ec;
+  --surface: #fffdf8;
+  --text: #1f2421;
+  --muted: #5c645f;
+  --line: #d9d3c4;
+  --good: #1d6b3f;
+  --good-bg: #e2f1e6;
+  --bad: #a3321f;
+  --bad-bg: #f8e4df;
+  --beginner: #1d6b5a;
+  --intermediate: #8a5a00;
+  --advanced: #5b3fa0;
+  --tone: var(--beginner);
+  --serif: 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif;
+  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #15181a;
+    --surface: #1e2225;
+    --text: #ece8df;
+    --muted: #a4aaa6;
+    --line: #353b3f;
+    --good: #7fd6a0;
+    --good-bg: #1c3527;
+    --bad: #f0a091;
+    --bad-bg: #3d211c;
+    --beginner: #6fcdb6;
+    --intermediate: #e6b55c;
+    --advanced: #b6a1f0;
+  }
+}
+
+.tone-beginner {
+  --tone: var(--beginner);
+}
+.tone-intermediate {
+  --tone: var(--intermediate);
+}
+.tone-advanced {
+  --tone: var(--advanced);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 1.0625rem/1.65 var(--sans);
+}
+
+:focus-visible {
+  outline: 3px solid var(--tone);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.site-header,
+main {
+  max-width: 44rem;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-block: 1rem;
+}
+
+.brand {
+  font: 700 1.125rem var(--serif);
+  color: var(--text);
+  text-decoration: none;
+}
+
+.lang-switch,
+.button {
+  font: inherit;
+  font-size: 0.9375rem;
+  padding: 0.5rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.button {
+  background: var(--tone);
+  border-color: var(--tone);
+  color: var(--bg);
+  font-weight: 600;
+}
+
+main {
+  padding-bottom: 5rem;
+}
+
+h1,
+h2 {
+  font-family: var(--serif);
+  line-height: 1.2;
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: clamp(1.9rem, 6vw, 2.75rem);
+  margin: 1.5rem 0 0.5rem;
+}
+
+h1.hero {
+  font-size: clamp(2.5rem, 10vw, 4rem);
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  font-size: 1.3rem;
+  margin: 2rem 0 0.4rem;
+}
+
+p {
+  margin: 0 0 1rem;
+}
+
+a {
+  color: var(--tone);
+}
+
+.lead {
+  font-size: 1.1875rem;
+  color: var(--muted);
+  margin-bottom: 2rem;
+}
+
+.back {
+  display: inline-block;
+  margin-top: 1rem;
+  font-size: 0.9375rem;
+  text-decoration: none;
+}
+
+/* Home: each level card steps further in, like a staircase */
+.levels,
+.lesson-list,
+.questions {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.levels {
+  display: grid;
+  gap: 1rem;
+}
+
+.level-card {
+  display: block;
+  padding: 1.25rem 1.5rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-left: 6px solid var(--tone);
+  border-radius: 10px;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.level-card:hover,
+.lesson-list a:hover {
+  border-color: var(--tone);
+}
+
+.level-card h2 {
+  margin: 0 0 0.25rem;
+  color: var(--tone);
+}
+
+.level-card p {
+  margin-bottom: 0.75rem;
+}
+
+@media (min-width: 40rem) {
+  .levels li:nth-child(2) {
+    margin-left: 2.5rem;
+  }
+  .levels li:nth-child(3) {
+    margin-left: 5rem;
+  }
+}
+
+progress {
+  display: block;
+  width: 100%;
+  height: 0.5rem;
+  accent-color: var(--tone);
+}
+
+.progress-text {
+  margin: 0.4rem 0 0;
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+
+/* Level: numbered lesson list */
+.lesson-list {
+  counter-reset: lesson;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.lesson-list a {
+  counter-increment: lesson;
+  display: grid;
+  grid-template-columns: 2.25rem 1fr;
+  column-gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.lesson-list a::before {
+  content: counter(lesson);
+  grid-row: span 3;
+  font: 700 1.6rem var(--serif);
+  color: var(--tone);
+}
+
+.lesson-list a > * {
+  grid-column: 2;
+}
+
+.lesson-title {
+  font-weight: 600;
+}
+
+.lesson-summary {
+  color: var(--muted);
+  font-size: 0.9375rem;
+}
+
+.done {
+  margin-top: 0.35rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--good);
+}
+
+/* Quiz */
+.quiz {
+  margin-top: 3rem;
+  padding-top: 0.5rem;
+  border-top: 2px solid var(--tone);
+}
+
+.question {
+  margin-top: 1.75rem;
+}
+
+.question-count {
+  margin: 0;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--tone);
+}
+
+.question-text {
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.options {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.option {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.25rem 1rem;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font: inherit;
+  text-align: left;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.option:hover:not([aria-disabled='true']) {
+  border-color: var(--tone);
+}
+
+.option[aria-disabled='true'] {
+  cursor: default;
+}
+
+.option.is-correct {
+  background: var(--good-bg);
+  border-color: var(--good);
+}
+
+.option.is-wrong {
+  background: var(--bad-bg);
+  border-color: var(--bad);
+}
+
+.mark {
+  white-space: nowrap;
+  font-size: 0.875rem;
+}
+
+.is-correct .mark {
+  color: var(--good);
+}
+
+.is-wrong .mark {
+  color: var(--bad);
+}
+
+.explanation {
+  margin: 0.6rem 0 0;
+  color: var(--muted);
+  font-size: 0.9375rem;
+}
+
+.explanation:empty,
+.result:empty {
+  display: none;
+}
+
+.result {
+  margin-top: 2rem;
+  padding: 1.25rem 1.5rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+
+.result p:last-child {
+  margin-bottom: 0;
+}
+
+.score {
+  font: 700 1.4rem var(--serif);
+  margin-bottom: 0.25rem;
+}
+
+.after-quiz {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 1.5rem;
+  margin-top: 1.5rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .option,
+  .level-card,
+  .lesson-list a {
+    transition: border-color 0.15s;
+  }
+}

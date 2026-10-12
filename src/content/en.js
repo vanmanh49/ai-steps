@@ -329,7 +329,7 @@ export default {
             },
             {
               heading: 'Trained once, then fixed',
-              body: 'A model does not learn from your chat. Its numbers were fixed when training ended. It seems to remember within a conversation only because the earlier messages are sent again each time, inside the context window. Start a new chat and the desk is cleared.',
+              body: 'A model does not learn from your chat. Its numbers were fixed when training ended. It seems to remember within a conversation only because the earlier messages are sent again each time, inside the context window. Start a new chat and the desk is cleared. That is not a privacy promise: the company running the chatbot may store your chats and use them to train later models, and some apps save notes about you to bring into future chats.',
             },
           ],
           quiz: [

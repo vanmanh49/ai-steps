@@ -67,6 +67,9 @@ switch. An unknown hash falls back to Home.
   so the app still works when storage is unavailable.
 - `src/App.jsx`: header, hash routing and the three screens.
 - `src/Quiz.jsx`: the quiz, its own component because it holds its own state.
+- `src/LessonArt.jsx`: one decorative inline SVG illustration per lesson,
+  keyed by lesson id, shown on the lesson page and in the lesson list. Drawn
+  with the level colour so it follows the light and dark themes.
 - `src/styles.css`: one stylesheet, responsive, light and dark.
 
 ## Accessibility

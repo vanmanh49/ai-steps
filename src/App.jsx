@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import en from './content/en.js'
+import LessonArt from './LessonArt.jsx'
 import vi from './content/vi.js'
 import { countDone, load, save } from './progress.js'
 import Quiz from './Quiz.jsx'
@@ -25,6 +26,21 @@ export default function App() {
     document.documentElement.lang = state.lang
   }, [state])
 
+  // Move focus to the new screen's heading so keyboard and screen-reader users land on it.
+  const firstRoute = useRef(route)
+  useEffect(() => {
+    if (route === firstRoute.current) return
+    const heading = document.querySelector('main h1')
+    heading.tabIndex = -1
+    heading.focus()
+  }, [route])
+
+  useEffect(() => {
+    const heading = document.querySelector('main h1').textContent
+    const { appName } = CONTENT[state.lang].ui
+    document.title = heading === appName ? appName : `${heading} · ${appName}`
+  }, [route, state.lang])
+
   const { ui, levels } = CONTENT[state.lang]
   const otherLang = state.lang === 'en' ? 'vi' : 'en'
 
@@ -47,6 +63,7 @@ export default function App() {
         </a>
         <h1>{lesson.title}</h1>
         <p className="lead">{lesson.summary}</p>
+        <LessonArt id={lesson.id} className="art-hero" />
         {lesson.sections.map((section) => (
           <section key={section.heading}>
             <h2>{section.heading}</h2>
@@ -80,6 +97,7 @@ export default function App() {
                 <span className="lesson-title">{l.title}</span>
                 <span className="lesson-summary">{l.summary}</span>
                 {state.completed.includes(l.id) && <span className="done">✓ {ui.completed}</span>}
+                <LessonArt id={l.id} className="art-thumb" />
               </a>
             </li>
           ))}

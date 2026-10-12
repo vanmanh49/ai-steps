@@ -220,8 +220,9 @@ progress {
 .lesson-list a {
   counter-increment: lesson;
   display: grid;
-  grid-template-columns: 2.25rem 1fr;
+  grid-template-columns: 2.25rem 1fr auto;
   column-gap: 0.75rem;
+  align-items: start;
   padding: 1rem 1.25rem;
   background: var(--surface);
   border: 1px solid var(--line);
@@ -255,6 +256,70 @@ progress {
   font-size: 0.875rem;
   font-weight: 600;
   color: var(--good);
+}
+
+/* Lesson illustrations */
+.art {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.art-hero {
+  margin: 0 0 1rem;
+}
+
+.lesson-list .art-thumb {
+  display: none;
+}
+
+@media (min-width: 34rem) {
+  .lesson-list .art-thumb {
+    display: block;
+    grid-column: 3;
+    grid-row: 1 / span 3;
+    width: 8.5rem;
+    align-self: center;
+  }
+}
+
+.art-bg {
+  fill: color-mix(in srgb, var(--tone) 12%, var(--surface));
+}
+
+.art .t {
+  fill: var(--tone);
+}
+
+.art .s {
+  fill: color-mix(in srgb, var(--tone) 30%, var(--surface));
+}
+
+.art .w {
+  fill: var(--surface);
+}
+
+.art .ws {
+  fill: var(--surface);
+  stroke: var(--tone);
+  stroke-width: 3;
+}
+
+.art .l,
+.art .l2 {
+  fill: none;
+  stroke: var(--tone);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.art .l2 {
+  stroke-width: 2;
+}
+
+.art .d {
+  stroke-dasharray: 2 8;
 }
 
 /* Quiz */
@@ -340,11 +405,6 @@ progress {
   font-size: 0.9375rem;
 }
 
-.explanation:empty,
-.result:empty {
-  display: none;
-}
-
 .result {
   margin-top: 2rem;
   padding: 1.25rem 1.5rem;
@@ -353,7 +413,7 @@ progress {
   border-radius: 10px;
 }
 
-.result p:last-child {
+.result > :last-child {
   margin-bottom: 0;
 }
 

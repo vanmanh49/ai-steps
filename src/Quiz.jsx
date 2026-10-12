@@ -1,10 +1,11 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 
 export const PASS_MARK = 3
 
 export default function Quiz({ questions, ui, onPass, children }) {
   const blank = () => questions.map(() => null)
   const [picks, setPicks] = useState(blank)
+  const titleRef = useRef(null)
 
   const score = picks.filter((pick, i) => pick === questions[i].answer).length
   const finished = picks.every((pick) => pick !== null)
@@ -17,9 +18,16 @@ export default function Quiz({ questions, ui, onPass, children }) {
     if (next.every((pick) => pick !== null) && nextScore >= PASS_MARK) onPass()
   }
 
+  function retry() {
+    setPicks(blank())
+    titleRef.current.focus()
+  }
+
   return (
     <section className="quiz" aria-labelledby="quiz-title">
-      <h2 id="quiz-title">{ui.quizTitle}</h2>
+      <h2 id="quiz-title" ref={titleRef} tabIndex={-1}>
+        {ui.quizTitle}
+      </h2>
       <ol className="questions">
         {questions.map((q, qIndex) => {
           const pick = picks[qIndex]
@@ -58,17 +66,17 @@ export default function Quiz({ questions, ui, onPass, children }) {
           )
         })}
       </ol>
-      <div className="result" aria-live="polite">
+      <div aria-live="polite">
         {finished && (
-          <>
+          <div className="result">
             <p className="score">{ui.score(score, questions.length)}</p>
             <p>{score >= PASS_MARK ? ui.passed : ui.failed}</p>
             {score < PASS_MARK && (
-              <button type="button" className="button" onClick={() => setPicks(blank())}>
+              <button type="button" className="button" onClick={retry}>
                 {ui.retry}
               </button>
             )}
-          </>
+          </div>
         )}
       </div>
       {finished && children}

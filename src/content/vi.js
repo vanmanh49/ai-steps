@@ -329,7 +329,7 @@ export default {
             },
             {
               heading: 'Huấn luyện một lần rồi cố định',
-              body: 'Mô hình không học từ cuộc trò chuyện của bạn. Các con số của nó đã cố định khi huấn luyện kết thúc. Nó có vẻ nhớ trong một cuộc trò chuyện chỉ vì các tin nhắn trước được gửi lại mỗi lần, bên trong cửa sổ ngữ cảnh. Mở cuộc trò chuyện mới là chiếc bàn được dọn sạch.',
+              body: 'Mô hình không học từ cuộc trò chuyện của bạn. Các con số của nó đã cố định khi huấn luyện kết thúc. Nó có vẻ nhớ trong một cuộc trò chuyện chỉ vì các tin nhắn trước được gửi lại mỗi lần, bên trong cửa sổ ngữ cảnh. Mở cuộc trò chuyện mới là chiếc bàn được dọn sạch. Nhưng đó không phải là lời cam kết về quyền riêng tư: công ty vận hành chatbot có thể lưu các cuộc trò chuyện của bạn và dùng chúng để huấn luyện mô hình sau này, và một số ứng dụng lưu ghi chú về bạn để mang sang các cuộc trò chuyện sau.',
             },
           ],
           quiz: [

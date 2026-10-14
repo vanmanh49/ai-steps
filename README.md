@@ -5,6 +5,8 @@ Learn about AI and AI agents in short lessons with quizzes, at three levels
 
 Live site: https://vanmanh49.github.io/ai-steps/
 
+![AI Steps home page: the Beginner, Intermediate and Advanced levels, each with its lesson progress](docs/screenshot.png)
+
 ## Run locally
 
 ```bash

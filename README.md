@@ -18,17 +18,11 @@ npm run dev
 
 ## Publish
 
-The site is served by GitHub Pages from the `gh-pages` branch, which holds the
-contents of `dist/`:
-
-```bash
-npm run build
-cd dist
-git init -b gh-pages
-git add -A
-git commit -m "Publish site"
-git push -f https://github.com/vanmanh49/ai-steps.git gh-pages
-```
+The site is published to GitHub Pages by the workflow in
+`.github/workflows/deploy.yml`. Every push to `main` runs the tests, builds the
+site and deploys `dist/`; it can also be run by hand from the Actions tab. If the
+tests fail, nothing is published. In the repository settings, Pages → Source
+must be set to "GitHub Actions".
 
 ## Adding a lesson
 
